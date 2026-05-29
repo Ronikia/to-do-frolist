@@ -62,51 +62,55 @@ if(isset($_POST['new_name']) && isset($_POST['new_description']) && isset($_POST
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./body.css">
     <title>Document</title>
 </head>
 <body>
-    <div>
-    <form action="index.php" method="POST">
-        <label>
+    <div class="main-div-form">
+    <form action="index.php" method="POST" class="main-form">
+        <label class="form-name">
             Имя
             <input type="text" name="name">
         </label>
-        <label>
+        <label class="form-description">
             Описание
             <input type="text" name="description">
         </label>
         <p>Срочность</p>
-        <label>
+        <label class="form-urgency">
             <input type="radio" name="urgency" value="yes"> Да
         </label>
-        <label>
+        <label class="form-urgency">
             <input type="radio" name="urgency" value="no"> Нет
         </label>
-        <button type="submit" name="submit">Добавить задачу</button>
+        <button type="submit" name="submit" class="form-btn">Добавить задачу</button>
     </form>
 </div>
 
-<div>
+<div class="notes">
     <h2>Ваши записки:</h2>
     <?php foreach($list as $lis): ?>
         
-        <div>
-            <ul>
-                <li>ID: <?= $lis['id'] ?></li>
-                <li>Name: <?= $lis['name'] ?></li>
-                <li>Description: <?= $lis['description'] ?></li>
-                <li>Urgency: <?= $lis['urgency'] ?></li>
+        <div class="notes-note">
+            <ul class="notes-note-ul">
+                <li class="notes-note-id">ID: <?= $lis['id'] ?></li>
+                <li class="notes-note-name">Name: <?= $lis['name'] ?></li>
+                <li class="notes-note-dis">Description: <?= $lis['description'] ?></li>
+                <li class="notes-note-urgency">Urgency: <?= $lis['urgency'] ?></li>
             </ul>
-            <form action="index.php" method="POST">
+            <div class="notes-note-div-forme">
+            <form action="index.php" method="POST" class="notes-note-form">
             <input type="hidden" name="task_id" value="<?= $lis['id'] ?>">
-            <label>
+            <label class="notes-note-update">
                 <input type="radio" name="vibor" value="update"> Обновить
             </label>
-            <label>
+            <label class="notes-note-delite">
                 <input type="radio" name="vibor" value="delete"> Удалить
             </label>
-            <button type="submit" name="submitUpOrDel">Применить</button>
+            <button type="submit" name="submitUpOrDel" class="notes-note-btn">Применить</button>
             </form>
+            </div>
+            
         </div>
     <?php endforeach ?>
 </div>
@@ -120,7 +124,7 @@ document.querySelectorAll('form').forEach(form => {
             e.preventDefault();
             
             // Получаем текущие значения из отображаемых данных
-            const taskDiv = this.closest('div');
+            const taskDiv = this.closest('.notes-note');
             const items = taskDiv.querySelectorAll('li');
             const currentName = items[1].textContent.replace('Name: ', '');
             const currentDesc = items[2].textContent.replace('Description: ', '');
