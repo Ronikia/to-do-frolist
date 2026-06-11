@@ -1,9 +1,14 @@
 <h1>To-Do-List</h1>
 
 <?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 session_start();
 
-require_once __DIR__ . '/database.php';
+require_once __DIR__ . '/src/database.php';
 
 $host = 'localhost';
 $dbname = 'to-do-listdb';
@@ -62,8 +67,8 @@ if(isset($_POST['new_name']) && isset($_POST['new_description']) && isset($_POST
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./body.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="./css/body.css">
+    <title>To-DoFrog-List</title>
 </head>
 <body>
     <div class="main-div-form">
